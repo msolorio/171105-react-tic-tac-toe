@@ -16,7 +16,13 @@ body {
   height: 200px;
   background: #eee;
   box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
 }
+
 .Square-0,
 .Square-1,
 .Square-2,

@@ -5,7 +5,13 @@ export default function Board(props) {
 
   function renderSquares() {
     return props.squareVals.map((squareVal, index) => {
-      return <Square index={index} />;
+
+      return (
+        <Square index={index}
+          squareVal={squareVal}
+          onSquareClick={props.onSquareClick}
+          key={index} />
+      );
     });
   }
 
