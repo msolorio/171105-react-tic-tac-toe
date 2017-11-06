@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 30px;
+  font-family: sans-serif;
+}
+
+.Board {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.Square {
+  width: 33%;
+  height: 200px;
+  background: #eee;
+  box-sizing: border-box;
+}
+.Square-0,
+.Square-1,
+.Square-2,
+.Square-3,
+.Square-4,
+.Square-5 {
+  border-bottom: 4px solid #aaa;
+}
+
+.Square-0,
+.Square-1,
+.Square-3,
+.Square-4,
+.Square-6,
+.Square-7 {
+  border-right: 4px solid #aaa;
+}
