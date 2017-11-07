@@ -9,6 +9,10 @@ body {
   padding: 30px;
 }
 
+.Message {
+  margin-bottom: 20px;
+}
+
 .Board {
   display: flex;
   margin: 0 auto;
