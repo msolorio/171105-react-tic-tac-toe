@@ -38,23 +38,15 @@ describe('calculateWinner', () => {
     expect(winner).toBe(null);
   });
 
-  // it('should return a winner if one exists in state', () => {
-  //   const wrapperInstance = mount(<App />).instance();
-  //   wrapperInstance.handleSquareClick(0);
-  //   console.log(wrapperInstance.state);
-  //   wrapperInstance.handleSquareClick(1);
-  //   console.log(wrapperInstance.state);
-  //   wrapperInstance.handleSquareClick(3);
-  //   console.log(wrapperInstance.state);
-  //   wrapperInstance.handleSquareClick(4);
-  //   console.log(wrapperInstance.state);
-  //   wrapperInstance.handleSquareClick(6);
-  //   console.log(wrapperInstance.state);
-  //   wrapperInstance.handleSquareClick(7);
-  //   // console.log(wrapperInstance.state.squareVals);
-  //   // console.log(wrapperInstance);
-  //   console.log(wrapperInstance.calculateWinner());
-  //   const winner = wrapperInstance.calculateWinner();
-  //   expect(winner).toBe('X');
-  // });
+  it('should return a winner if one exists in state', () => {
+    const wrapperInstance = mount(<App />).instance();
+    wrapperInstance.handleSquareClick(0);
+    wrapperInstance.handleSquareClick(1);
+    wrapperInstance.handleSquareClick(3);
+    wrapperInstance.handleSquareClick(4);
+    wrapperInstance.handleSquareClick(6);
+    wrapperInstance.handleSquareClick(7);
+    const winner = wrapperInstance.calculateWinner();
+    expect(winner).toBe('X');
+  });
 });

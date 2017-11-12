@@ -30,7 +30,11 @@ class App extends Component {
 
     return winningCombos.reduce((winner, combo) => {
       const [a, b, c] = combo;
-      if (squareVals[a] === squareVals[b] && squareVals[a] === squareVals[c]) {
+      if (
+        squareVals[a] !== null
+        && squareVals[a] === squareVals[b]
+        && squareVals[a] === squareVals[c]
+      ) {
         return squareVals[a];
       }
       return winner;
@@ -40,7 +44,6 @@ class App extends Component {
   handleSquareClick(index) {
     if (this.calculateWinner()) return;
     if (this.state.squareVals[index] !== null) return;
-
     const squareValsClone = this.state.squareVals.slice();
     squareValsClone[index] = this.state.xIsNext ? 'X' : 'O';
 
