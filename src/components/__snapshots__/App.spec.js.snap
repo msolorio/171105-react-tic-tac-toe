@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match snapshot 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="Message"
+  >
+    Player's turn: X
+  </div>
+  <div
+    className="Board"
+  >
+    <div
+      className="Square Square-0"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-1"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-2"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-3"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-4"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-5"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-6"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-7"
+      onClick={[Function]}
+    />
+    <div
+      className="Square Square-8"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

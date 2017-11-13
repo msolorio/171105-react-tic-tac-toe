@@ -30,7 +30,7 @@ class App extends Component {
 
     return this.winningCombos.reduce((winner, combo) => {
       const [a, b, c] = combo;
-      
+
       if (
         squareVals[a] !== null
         && squareVals[a] === squareVals[b]

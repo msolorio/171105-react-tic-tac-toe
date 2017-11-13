@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Square from './Square';
@@ -9,6 +10,14 @@ describe('App', () => {
   it('should render without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
+  });
+
+  it('should match snapshot', () => {
+    const tree = renderer.create(
+      <App />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 
   it('should render a message component', () => {
