@@ -23,30 +23,56 @@ describe('App', () => {
 
 });
 describe('handleSquareClick', () => {
-  it('should update state when called', () => {
+  it('should update state when called when there is no winner and square is not occupied', () => {
     const wrapperInstance = shallow(<App />).instance();
     wrapperInstance.handleSquareClick(0);
+
     expect(wrapperInstance.state.squareVals[0]).toBe('X');
-    expect(wrapperInstance.state.xIsNext).toBeFalsy;
+    expect(wrapperInstance.state.xIsNext).toBe(false);
   });
+
+  it('should not update state when called on a square already occupied', () => {
+    const wrapperInstance = shallow(<App />).instance();
+    wrapperInstance.state.squareVals[0] = 'O';
+    wrapperInstance.state.xIsNext = true;
+    wrapperInstance.handleSquareClick(0);
+
+    expect(wrapperInstance.state.squareVals[0]).toBe('O');
+    expect(wrapperInstance.state.xIsNext).toBe(true);
+  });
+
+  it('should not update state if there is already a winner', () => {
+    const winningCombos = shallow(<App />).instance().winningCombos;
+
+    winningCombos.forEach((combo) => {
+      const wrapperInstance = mount(<App />).instance();
+      combo.forEach(position => wrapperInstance.state.squareVals[position] = 'O');
+      wrapperInstance.state.xIsNext = true;
+      wrapperInstance.handleSquareClick(combo[0]);
+
+      expect(wrapperInstance.state.squareVals[combo[0]]).toBe('O');
+      expect(wrapperInstance.state.xIsNext).toBe(true);
+    });
+  })
 });
 
 describe('calculateWinner', () => {
   it('should return null if there is no winner', () => {
     const wrapperInstance = shallow(<App />).instance();
     const winner = wrapperInstance.calculateWinner(wrapperInstance.state.squareVals);
+
     expect(winner).toBe(null);
   });
 
   it('should return a winner if one exists in state', () => {
-    const wrapperInstance = mount(<App />).instance();
-    wrapperInstance.handleSquareClick(0);
-    wrapperInstance.handleSquareClick(1);
-    wrapperInstance.handleSquareClick(3);
-    wrapperInstance.handleSquareClick(4);
-    wrapperInstance.handleSquareClick(6);
-    wrapperInstance.handleSquareClick(7);
-    const winner = wrapperInstance.calculateWinner();
-    expect(winner).toBe('X');
+
+    const winningCombos = shallow(<App />).instance().winningCombos;
+
+    winningCombos.forEach((combo) => {
+      const wrapperInstance = mount(<App />).instance();
+      combo.forEach(position => wrapperInstance.state.squareVals[position] = 'X');
+
+      expect(wrapperInstance.calculateWinner()).toBe('X');
+    });
   });
 });

@@ -11,11 +11,7 @@ class App extends Component {
       xIsNext: true
     };
 
-    this.handleSquareClick = this.handleSquareClick.bind(this);
-  }
-
-  calculateWinner() {
-    const winningCombos = [
+    this.winningCombos = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -26,10 +22,15 @@ class App extends Component {
       [6, 4, 2]
     ];
 
+    this.handleSquareClick = this.handleSquareClick.bind(this);
+  }
+
+  calculateWinner() {
     const squareVals = this.state.squareVals;
 
-    return winningCombos.reduce((winner, combo) => {
+    return this.winningCombos.reduce((winner, combo) => {
       const [a, b, c] = combo;
+      
       if (
         squareVals[a] !== null
         && squareVals[a] === squareVals[b]
