@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Square should match snapshot 1`] = `
+<div
+  className="Square Square-0"
+  onClick={[Function]}
+>
+  
+</div>
+`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Square(props) {
 
@@ -13,3 +14,9 @@ export default function Square(props) {
     </div>
   );
 }
+
+Square.propTypes = {
+  index: PropTypes.number.isRequired,
+  squareVal: PropTypes.string.isRequired,
+  onSquareClick: PropTypes.func.isRequired
+};

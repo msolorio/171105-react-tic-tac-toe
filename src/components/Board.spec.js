@@ -7,7 +7,7 @@ import Board from './Board';
 import Square from './Square';
 
 const boardProps = {
-  squareVals: Array(9).fill(null),
+  squareVals: Array(9).fill(''),
   onSquareClick: jest.fn()
 };
 
@@ -26,12 +26,12 @@ describe('Board', () => {
     expect(firstSquare.prop('onSquareClick')).toBe(boardProps.onSquareClick);
   });
 
-  it('should pass the correct square value to a squares based on squareVals prop passed in', () => {
+  it('should pass the correct values to each square based on squareVals prop passed in', () => {
     const firstSquare = mount(<Board {...boardProps} />).find(Square).first();
-    expect(firstSquare.prop('squareVal')).toBe(null);
+    expect(firstSquare.prop('squareVal')).toBe('');
 
     const boardPropsFilled = {
-      squareVals: ['X', 'O', null, null, null, null, null, null, null],
+      squareVals: ['X', 'O', '', '', '', '', '', '', ''],
       onSquareClick: jest.fn()
     };
 
@@ -42,13 +42,13 @@ describe('Board', () => {
 
     expect(firstSquareFilled.prop('squareVal')).toBe('X');
     expect(secondSquareFilled.prop('squareVal')).toBe('O');
-    expect(thirdSquareFilled.prop('squareVal')).toBe(null);
+    expect(thirdSquareFilled.prop('squareVal')).toBe('');
   });
 
   it('should render 9 squares', () => {
     const wrapper = mount(<Board {...boardProps} />);
     const squares = wrapper.find(Square);
-    
+
     expect(squares).toHaveLength(9);
   });
 });

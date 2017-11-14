@@ -31,6 +31,10 @@ describe('App', () => {
   });
 
 });
+
+/*************************************************************************
+* TODO: revamp to use setState rather than manipulating state directly
+**************************************************************************/
 describe('handleSquareClick', () => {
   it('should update state when called when there is no winner and square is not occupied', () => {
     const wrapperInstance = shallow(<App />).instance();
@@ -62,19 +66,18 @@ describe('handleSquareClick', () => {
       expect(wrapperInstance.state.squareVals[combo[0]]).toBe('O');
       expect(wrapperInstance.state.xIsNext).toBe(true);
     });
-  })
+  });
 });
 
 describe('calculateWinner', () => {
-  it('should return null if there is no winner', () => {
+
+  it('should return empty string if there is no winner', () => {
     const wrapperInstance = shallow(<App />).instance();
     const winner = wrapperInstance.calculateWinner(wrapperInstance.state.squareVals);
-
-    expect(winner).toBe(null);
+    expect(winner).toBe('');
   });
 
   it('should return a winner if one exists in state', () => {
-
     const winningCombos = shallow(<App />).instance().winningCombos;
 
     winningCombos.forEach((combo) => {
@@ -83,5 +86,21 @@ describe('calculateWinner', () => {
 
       expect(wrapperInstance.calculateWinner()).toBe('X');
     });
+  });
+});
+
+describe('squaresAvailable', () => {
+  it('should return true when no squares have been clicked', () => {
+    const wrapperInstance = shallow(<App />).instance();
+
+    expect(wrapperInstance.squaresAvailable()).toBe(true);
+  });
+
+  it('should return false when all squares have been filled', () => {
+    const wrapperInstance = shallow(<App />).instance();
+    const filledSquareVals = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+    const squareVals = wrapperInstance.state.squareVals = filledSquareVals;
+
+    expect(wrapperInstance.squaresAvailable()).toBe(false);
   });
 });

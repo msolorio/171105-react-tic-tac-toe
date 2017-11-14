@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      squareVals: Array(9).fill(null),
+      squareVals: Array(9).fill(''),
       xIsNext: true
     };
 
@@ -32,19 +32,27 @@ class App extends Component {
       const [a, b, c] = combo;
 
       if (
-        squareVals[a] !== null
+        squareVals[a] !== ''
         && squareVals[a] === squareVals[b]
         && squareVals[a] === squareVals[c]
       ) {
         return squareVals[a];
       }
       return winner;
-    }, null);
+    }, '');
+  }
+
+  // returns boolean value signifying if there are available squares left
+  squaresAvailable() {
+    return this.state.squareVals.reduce((squaresLeft, square) => {
+      if (square === '') return true;
+      return squaresLeft;
+    }, false);
   }
 
   handleSquareClick(index) {
     if (this.calculateWinner()) return;
-    if (this.state.squareVals[index] !== null) return;
+    if (this.state.squareVals[index] !== '') return;
     const squareValsClone = this.state.squareVals.slice();
     squareValsClone[index] = this.state.xIsNext ? 'X' : 'O';
 
@@ -57,7 +65,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Message winner={this.calculateWinner()} xIsNext={this.state.xIsNext} />
+        <Message winner={this.calculateWinner()}
+          squaresAvailable={this.squaresAvailable()}
+          xIsNext={this.state.xIsNext} />
         <Board squareVals={this.state.squareVals}
           onSquareClick={this.handleSquareClick} />
       </div>
