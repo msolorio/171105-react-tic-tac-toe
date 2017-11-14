@@ -16,11 +16,7 @@ export default function Board(props) {
     });
   }
 
-  return (
-    <div className="Board">
-      {renderSquares()}
-    </div>
-  );
+  return <div className="Board">{renderSquares()}</div>;
 }
 
 Board.propTypes = {

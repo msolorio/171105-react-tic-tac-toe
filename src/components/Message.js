@@ -15,9 +15,7 @@ export default function Message(props) {
     }
   }
 
-  return (
-    <div className="Message">{getMessage()}</div>
-  );
+  return <div className="Message">{getMessage()}</div>;
 }
 
 Message.propTypes = {
